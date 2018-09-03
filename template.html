@@ -3,12 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="css/ol.css" type="text/css">
   <style>
     body {
       width: 100%;
     }
+
     #centerContainer {
       width: auto;
       max-width: 600px;
@@ -19,15 +20,31 @@
       height: 200px;
       position: sticky;
       top: 0px;
-      
+
       background-color: white;
       padding-bottom: 5px;
     }
-    
-    img {
+
+    .photo {
       width: 100%;
       padding-top: 5px;
       padding-bottom: 5px;
+    }
+
+    span {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+
+    span::before,
+    span::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: teal;
+      margin: .5em;
     }
   </style>
   <script src="js/ol.js"></script>
@@ -71,153 +88,153 @@
 </head>
 
 <body>
-<div id="centerContainer">
-<div id="map">
-  <div id="popup"></div>
-  <div id="info"></div>
-</div>
-<script type="text/javascript">
-  // begin code generation
-  // markers, locations
+  <div id="centerContainer">
+    <div id="map">
+      <div id="popup"></div>
+      <div id="info"></div>
+    </div>
+    <script type="text/javascript">
+      // begin code generation
+      // markers, locations
 
-  // iconFeatures, Tooltips
+      // iconFeatures, Tooltips
 
-  // end code generation
+      // end code generation
 
-  var vectorSource = new ol.source.Vector({
-    features: iconFeatures
-  })
-  var iconStyle = new ol.style.Style({
-    image: new ol.style.Icon(({
-      anchor: [0.5, 46],
-      anchorXUnits: 'fraction',
-      anchorYUnits: 'pixels',
-      opacity: 0.75,
-      src: 'img/marker.png'
-    }))
-  });
-  var vectorLayer = new ol.layer.Vector({
-    source: vectorSource,
-    style: iconStyle
-  })
-
-  var view = new ol.View({
-    center: markers[0],
-    zoom: 4
-  })
-  var map = new ol.Map({
-    target: 'map',
-    layers: [
-      new ol.layer.Tile({
-        source: new ol.source.OSM()
+      var vectorSource = new ol.source.Vector({
+        features: iconFeatures
       })
-    ],
-    view: view
-  });
-  map.addLayer(vectorLayer)
-
-  var element = document.getElementById('popup')
-
-  var popup = new ol.Overlay({
-    element: element,
-    positioning: 'bottom-center',
-    stopEvent: false,
-    offset: [0, 0]
-  })
-
-  map.addOverlay(popup);
-
-  var info = $('#info');
-  info.tooltip({
-    animation: false,
-    trigger: 'manual'
-  });
-
-  var displayFeatureInfo = function (pixel) {
-    info.css({
-      position: 'absolute',
-      left: pixel[0] + 'px',
-      top: (pixel[1] - 15) + 'px'
-    });
-    var feature = map.forEachFeatureAtPixel(pixel, function (feature) {
-      return feature;
-    });
-    if (feature) {
-      info.tooltip('hide')
-        .attr('data-original-title', feature.get('name'))  //        .tooltip('fixTitle')
-        .tooltip('show');
-    } else {
-      info.tooltip('hide');
-    }
-  };
-
-  map.on('pointermove', function (evt) {
-    if (evt.dragging) {
-      info.tooltip('hide');
-      return;
-    }
-    displayFeatureInfo(map.getEventPixel(evt.originalEvent));
-  });
-  // display popup on click
-  map.on('click', function (evt) {
-    var feature = map.forEachFeatureAtPixel(evt.pixel,
-      function (feature) {
-        return feature;
+      var iconStyle = new ol.style.Style({
+        image: new ol.style.Icon(({
+          anchor: [0.5, 46],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'pixels',
+          opacity: 0.75,
+          src: 'img/marker.png'
+        }))
       });
-    if (feature) {
-      //$(element).popover('dispose');
-      //var coordinates = feature.getGeometry().getCoordinates();
-      //popup.setPosition(coordinates);
-      m = "#" + feature.get('id');
-      $(m).scrollintoview({duration: "slow", direction: "y"});
-      /*
-      $(element).popover({
-        placement: 'right',
-        html: true,
-        content: feature.get('name')
+      var vectorLayer = new ol.layer.Vector({
+        source: vectorSource,
+        style: iconStyle
+      })
+
+      var view = new ol.View({
+        center: markers[0],
+        zoom: 4
+      })
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: view
       });
-      $(element).popover('show');
-    } else {
-      $(element).popover('dispose');
-    */
-    }
-  }); 
+      map.addLayer(vectorLayer)
 
-  // change mouse cursor when over marker
-  map.on('pointermove', function (e) {
-    if (e.dragging) {
-      $(element).popover('dispose');
-      return;
-    }
-    var pixel = map.getEventPixel(e.originalEvent);
-    var hit = map.hasFeatureAtPixel(pixel);
-    //map.getTarget().style.cursor = hit ? 'pointer' : '';
-    document.body.style.cursor = hit ? 'pointer' : '';
-  });
+      var element = document.getElementById('popup')
 
-  // pan map 
-  var currElement = 0;
-  var inview = 0;
+      var popup = new ol.Overlay({
+        element: element,
+        positioning: 'bottom-center',
+        stopEvent: false,
+        offset: [0, 0]
+      })
 
-  window.onscroll = function () {
-    inview = Utils.WhichBlockInView(markers.length);
-    if (inview === currElement) {
-      // no change, do nothing
-    } else {
-      currElement = inview;
-      view.animate({
-        center: markers[inview],
-        duration: 2000
+      map.addOverlay(popup);
+
+      var info = $('#info');
+      info.tooltip({
+        animation: false,
+        trigger: 'manual'
       });
-    }
-    setTimeout(function () { }, 1000);
-  };
 
-</script>
-<br/>
-<!-- begin code generation -->
-<!-- images -->
-<!-- end code generation -->
-</div>
+      var displayFeatureInfo = function (pixel) {
+        info.css({
+          position: 'absolute',
+          left: pixel[0] + 'px',
+          top: (pixel[1] - 15) + 'px'
+        });
+        var feature = map.forEachFeatureAtPixel(pixel, function (feature) {
+          return feature;
+        });
+        if (feature) {
+          info.tooltip('hide')
+            .attr('data-original-title', feature.get('name'))  //        .tooltip('fixTitle')
+            .tooltip('show');
+        } else {
+          info.tooltip('hide');
+        }
+      };
+
+      map.on('pointermove', function (evt) {
+        if (evt.dragging) {
+          info.tooltip('hide');
+          return;
+        }
+        displayFeatureInfo(map.getEventPixel(evt.originalEvent));
+      });
+      // display popup on click
+      map.on('click', function (evt) {
+        var feature = map.forEachFeatureAtPixel(evt.pixel,
+          function (feature) {
+            return feature;
+          });
+        if (feature) {
+          //$(element).popover('dispose');
+          //var coordinates = feature.getGeometry().getCoordinates();
+          //popup.setPosition(coordinates);
+          m = "#" + feature.get('id');
+          $(m).scrollintoview({ duration: "slow", direction: "y" });
+          /*
+          $(element).popover({
+            placement: 'right',
+            html: true,
+            content: feature.get('name')
+          });
+          $(element).popover('show');
+        } else {
+          $(element).popover('dispose');
+        */
+        }
+      });
+
+      // change mouse cursor when over marker
+      map.on('pointermove', function (e) {
+        if (e.dragging) {
+          $(element).popover('dispose');
+          return;
+        }
+        var pixel = map.getEventPixel(e.originalEvent);
+        var hit = map.hasFeatureAtPixel(pixel);
+        //map.getTarget().style.cursor = hit ? 'pointer' : '';
+        document.body.style.cursor = hit ? 'pointer' : '';
+      });
+
+      // pan map 
+      var currElement = 0;
+      var inview = 0;
+
+      window.onscroll = function () {
+        inview = Utils.WhichBlockInView(markers.length);
+        if (inview === currElement) {
+          // no change, do nothing
+        } else {
+          currElement = inview;
+          view.animate({
+            center: markers[inview],
+            duration: 2000
+          });
+        }
+        setTimeout(function () { }, 1000);
+      };
+
+    </script>
+    <br/>
+    <!-- begin code generation -->
+    <!-- images -->
+    <!-- end code generation -->
+  </div>
 </body>
 </html>

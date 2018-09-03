@@ -28,9 +28,10 @@ for i, row in labeleddata.iterrows():
         iconFeaturestr += "    id : 'marker" + str(currLabel) + "'\n"
         iconFeaturestr += "  });\n"
         iconFeaturestr += "  iconFeatures.push(iconFeature" + str(currLabel) + ");\n"
-        imageHTML += "<img id='marker" + str(currLabel) + "' src='img/" + row['filename'] + "'><br/>\n"
+        imageHTML += "<span><img src='img/logo.png' alt="" /></span><br/>\n"
+        imageHTML += "<img id='marker" + str(currLabel) + "' src='img/" + row['filename'] + "' class='photo'><br/>\n"
     else:
-        imageHTML +="<img src='img/"+ row['filename'] + "'><br/>\n"
+        imageHTML +="<img src='img/"+ row['filename'] + "' class='photo'><br/>\n"
     
 
 # read in template, swap in the constructed values
