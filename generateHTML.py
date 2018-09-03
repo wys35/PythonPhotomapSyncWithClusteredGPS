@@ -30,7 +30,7 @@ for i, row in labeleddata.iterrows():
         iconFeaturestr += "  iconFeatures.push(iconFeature" + str(currLabel) + ");\n"
         imageHTML += "<div id='marker" + str(currLabel) + "' class='marker'></div>\n"
     # all images
-    imageHTML +="<img src='img/"+ row['filename'] + "' width='600'><br/>\n"
+    imageHTML +="<img src='img/"+ row['filename'] + "'><br/>\n"
 
 # read in template, swap in the constructed values
 
