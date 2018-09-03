@@ -106,7 +106,7 @@
 
             scroll: {
 
-                top: (isRoot ? win : $element).scrollTop(),
+                top: (isRoot ? win : $element).scrollTop() + 200, // adjust for fixed height map
 
                 left: (isRoot ? win : $element).scrollLeft()
 
