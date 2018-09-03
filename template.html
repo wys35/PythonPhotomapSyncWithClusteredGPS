@@ -6,18 +6,20 @@
   <link rel="stylesheet" href="css/ol.css" type="text/css">
   <style>
     body {
-      width: 700px;
-      margin: 0px auto !important;
+      width: 100%;
+    }
+    #centerContainer {
+      width: 600px;
+      margin: 0px auto;
     }
 
     #map {
       height: 200px;
-      width: 86%;
       position: sticky;
       top: 0px;
-      right: 20px;
+      
       background-color: white;
-      padding-bottom: 10px;
+      padding-bottom: 5px;
     }
 
     .marker {
@@ -25,6 +27,7 @@
       visibility: hidden;
     }
     img {
+      width: 600px;
       padding-top: 5px;
       padding-bottom: 5px;
     }
@@ -69,7 +72,8 @@
   <title>Travel Photos</title>
 </head>
 
-<body></body>
+<body>
+<div id="centerContainer">
 <div id="map">
   <div id="popup"></div>
   <div id="info"></div>
@@ -216,5 +220,6 @@
 <!-- begin code generation -->
 <!-- images -->
 <!-- end code generation -->
+</div>
 </body>
 </html>
