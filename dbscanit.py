@@ -5,8 +5,6 @@ from sklearn.cluster import DBSCAN
 rawdata = pd.read_csv('data.csv', delimiter=',')
 gpsdata = rawdata.loc[:, ['lat','lon']]
 
-print(gpsdata)
-
 kms_per_radian = 6371.0088
 epsilon = 10/kms_per_radian # 100 km 
 db = DBSCAN(eps=epsilon, min_samples=3, algorithm='ball_tree', metric='haversine').fit(np.radians(gpsdata))

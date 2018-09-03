@@ -31,6 +31,7 @@
   </style>
   <script src="js/ol.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/scrollintoview.js"></script>
   <script src="js/popper.min..js"></script>
   <script src="js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -156,16 +157,18 @@
     displayFeatureInfo(map.getEventPixel(evt.originalEvent));
   });
   // display popup on click
-  /*
   map.on('click', function (evt) {
     var feature = map.forEachFeatureAtPixel(evt.pixel,
       function (feature) {
         return feature;
       });
     if (feature) {
-      $(element).popover('dispose');
-      var coordinates = feature.getGeometry().getCoordinates();
-      popup.setPosition(coordinates);
+      //$(element).popover('dispose');
+      //var coordinates = feature.getGeometry().getCoordinates();
+      //popup.setPosition(coordinates);
+      m = "#" + feature.get('id');
+      $(m).scrollintoview({duration: "slow", direction: "y"});
+      /*
       $(element).popover({
         placement: 'right',
         html: true,
@@ -174,9 +177,9 @@
       $(element).popover('show');
     } else {
       $(element).popover('dispose');
+    */
     }
   }); 
-  */
 
   // change mouse cursor when over marker
   map.on('pointermove', function (e) {
