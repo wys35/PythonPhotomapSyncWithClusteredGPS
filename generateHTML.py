@@ -40,5 +40,5 @@ data = data.replace('// markers, locations', markerstr)
 data = data.replace('// iconFeatures, Tooltips', iconFeaturestr)
 data = data.replace('<!-- images -->', imageHTML)
 
-with open("index.html", "w") as f:
+with open("index.html", "w", encoding='utf-8') as f:
     f.write(data)
