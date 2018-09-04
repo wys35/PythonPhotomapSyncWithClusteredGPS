@@ -106,7 +106,7 @@
 
             scroll: {
 
-                top: (isRoot ? win : $element).scrollTop() + 200, // adjust for fixed height map
+                top: (isRoot ? win : $element).scrollTop(),
 
                 left: (isRoot ? win : $element).scrollLeft()
 
@@ -232,7 +232,7 @@
 
                     {
 
-                        animOptions.scrollTop = dim.s.scroll.top + rel.top;
+                        animOptions.scrollTop = dim.s.scroll.top + rel.top-280; // adjust for map and separator
 
                     }
 
