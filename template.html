@@ -61,7 +61,7 @@
     Utils.prototype = {
       constructor: Utils,
       WhichBlockInView: function (numberOfMarkers) {
-        var pageTop = $(window).scrollTop();
+        var pageTop = $(window).scrollTop() + 200; // 200 adjusted for map
         var pageBottom = pageTop + $(window).height();
         var pageMiddle = pageTop + (pageBottom - pageTop) / 2;
 
