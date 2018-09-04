@@ -21,14 +21,15 @@ currLoc = ""
 for i, row in labeleddata.iterrows():
     if row['label'] != currLabel and int(row['label']) != -1: # generate marker, iconFeatures, divider div
         currLabel = int(row['label'])
+        currLoc = locations[currLabel]
         markerstr += "  markers.push(ol.proj.fromLonLat([" + str(row['lon']) + ", " + str(row['lat']) + "]));\n"
         iconFeaturestr += "  var iconFeature" + str(currLabel) + " = new ol.Feature({\n"
         iconFeaturestr += "    geometry: new ol.geom.Point(ol.proj.transform([" + str(row['lon']) + ", " + str(row['lat']) + "], 'EPSG:4326', 'EPSG:3857')),\n"
-        iconFeaturestr += "    name : '" + locations[currLabel] +"',\n"
+        iconFeaturestr += "    name : '" + currLoc +"',\n"
         iconFeaturestr += "    id : 'marker" + str(currLabel) + "'\n"
         iconFeaturestr += "  });\n"
         iconFeaturestr += "  iconFeatures.push(iconFeature" + str(currLabel) + ");\n"
-        imageHTML += "<span><img src='img/logo.png' alt="" /></span><br/>\n"
+        imageHTML += "<span><img src='img/logo.png' alt="" />&nbsp;&nbsp;" + currLoc  +"&nbsp;&nbsp;<img src='img/logo.png' alt="" /></span><br/>\n"
         imageHTML += "<img id='marker" + str(currLabel) + "' src='img/" + row['filename'] + "' class='photo'><br/>\n"
     else:
         imageHTML +="<img src='img/"+ row['filename'] + "' class='photo'><br/>\n"
