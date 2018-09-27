@@ -4,29 +4,30 @@ import csv
 import json
 
 def getplace(lat, lon):
-    url = "http://maps.googleapis.com/maps/api/geocode/json?"
-    url += "latlng=%s,%s&sensor=false" % (lat, lon)
+    url = "https://api.opencagedata.com/geocode/v1/json?key=e790069baef24c9e8a549188c41a3a9c&"
+    url += "q=%s%2C%s&pretty=1&no_annotations=1" % (lat, lon)
     v = urlopen(url)
     j = json.load(v)
-    components = j['results'][0]['address_components']
-    country = town = city = None
-    for c in components:
-        if "country" in c['types']:
-            country = c['long_name']
-        if 'postal_town' in c['types']:
-            town = c['long_name']
-        if 'locality' in c['types']:
-            city = c['long_name']
-    local = None
-    if city is None: # city has preference
-        if town is None:
-            local = None
-        else:
-            local = town
-    else:
-        local = city
-        
-    return "%s,%s" % (local, country)
+    #components = j['results'][0]['address_components']
+    #country = town = city = None
+    #for c in components:
+    #    if "country" in c['types']:
+    #        country = c['long_name']
+    #    if 'postal_town' in c['types']:
+    #        town = c['long_name']
+    #    if 'locality' in c['types']:
+    #        city = c['long_name']
+    #local = None
+    #if city is None: # city has preference
+    #    if town is None:
+    #        local = None
+    #    else:
+    #        local = town
+    #else:
+    #    local = city
+    #
+    #    return "%s,%s" % (local, country)
+    return j['results'][0]['formatted'] 
 
 currlabel = -1
 currLoc = ""
