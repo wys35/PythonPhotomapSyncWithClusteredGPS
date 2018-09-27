@@ -41,4 +41,5 @@ with open('locations.csv', 'w', newline='', encoding='utf-8') as csvfile:
             print("%s|%s|%s" % (row['lat'], row['lon'], currLoc))
             locrow = str(int(currlabel))+"|"+currLoc+"\r\n"
             csvfile.write(locrow)
+            time.sleep(1) # opencagedata free tier api limit
     
