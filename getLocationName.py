@@ -2,6 +2,7 @@ from urllib.request import urlopen
 import pandas as pd
 import csv
 import json
+import time
 
 def getplace(lat, lon):
     url = "https://api.opencagedata.com/geocode/v1/json?key=e790069baef24c9e8a549188c41a3a9c&"
