@@ -6,7 +6,7 @@ import time
 
 def getplace(lat, lon):
     url = "https://api.opencagedata.com/geocode/v1/json?key=e790069baef24c9e8a549188c41a3a9c&"
-    url += "q=%s%2C%s&pretty=1&no_annotations=1" % (lat, lon)
+    url += "q=%s%%2C%s&pretty=1&no_annotations=1" % (lat, lon)
     v = urlopen(url)
     j = json.load(v)
     #components = j['results'][0]['address_components']
