@@ -6,7 +6,7 @@ rawdata = pd.read_csv('data.csv', delimiter=',')
 gpsdata = rawdata.loc[:, ['lat','lon']]
 
 kms_per_radian = 6371.0088
-epsilon = 30/kms_per_radian # 100 km 
+epsilon = 10/kms_per_radian # 100 km 
 db = DBSCAN(eps=epsilon, min_samples=1, algorithm='ball_tree', metric='haversine').fit(np.radians(gpsdata))
 #db = DBSCAN(eps=0.5, min_samples=3).fit(gpsdata)
 core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
@@ -24,7 +24,7 @@ for i, row in rawdata.iterrows():
     rawdata.at[i, 'label'] = newlabel
 
 # sort the values, in case of revisit the same location twice.
-rawdata = rawdata.sort_values(['label'], ascending=[True])
+rawdata = rawdata.sort_values(['label', 'filename'], ascending=[True, True])
 
 rawdata.to_csv("datawithlabel.csv", sep=",", encoding='utf-8')    
 
