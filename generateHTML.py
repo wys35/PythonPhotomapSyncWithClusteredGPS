@@ -32,6 +32,7 @@ for i, row in labeleddata.iterrows():
         imageHTML += "<span><img src='img/logo.png' alt="" />&nbsp;&nbsp;" + currLoc  +"&nbsp;&nbsp;<img src='img/logo.png' alt="" /></span><br/>\n"
         imageHTML += "<img id='marker" + str(currLabel) + "' src='img/" + row['filename'] + "' class='photo'><br/>\n"
     else:
+	#   imageHTML +="<img src='img/" + row['filename'] + "' class='photo'><br/>\n"
         imageHTML +="<img src='https://raw.githubusercontent.com/wys35/wys35.github.io/master/img/"+ row['filename'] + "' class='photo'><br/>\n"
     
 
