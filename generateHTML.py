@@ -25,7 +25,7 @@ for i, row in labeleddata.iterrows():
         markerstr += "  markers.push(ol.proj.fromLonLat([" + str(row['lon']) + ", " + str(row['lat']) + "]));\n"
         iconFeaturestr += "  var iconFeature" + str(currLabel) + " = new ol.Feature({\n"
         iconFeaturestr += "    geometry: new ol.geom.Point(ol.proj.transform([" + str(row['lon']) + ", " + str(row['lat']) + "], 'EPSG:4326', 'EPSG:3857')),\n"
-        iconFeaturestr += "    name : '" + currLoc +"',\n"
+        iconFeaturestr += "    name : \"" + currLoc +"\",\n"
         iconFeaturestr += "    id : 'marker" + str(currLabel) + "'\n"
         iconFeaturestr += "  });\n"
         iconFeaturestr += "  iconFeatures.push(iconFeature" + str(currLabel) + ");\n"
