@@ -1,6 +1,9 @@
 import csv
 import pandas as pd
 import fileinput 
+import sys
+
+tripname = sys.argv[1]
 
 # read in the locations
 locations = {}
@@ -30,10 +33,11 @@ for i, row in labeleddata.iterrows():
         iconFeaturestr += "  });\n"
         iconFeaturestr += "  iconFeatures.push(iconFeature" + str(currLabel) + ");\n"
         imageHTML += "<span><img src='img/logo.png' alt="" />&nbsp;&nbsp;" + currLoc  +"&nbsp;&nbsp;<img src='img/logo.png' alt="" /></span><br/>\n"
-        imageHTML += "<img id='marker" + str(currLabel) + "' src='img/" + row['filename'] + "' class='photo'><br/>\n"
+        #imageHTML += "<img id='marker" + str(currLabel) + "' src='img/" + tripname + "/" + row['filename'] + "' class='photo'><br/>\n"
+        imageHTML += "<img id='marker" + str(currLabel) + "' src='https://raw.githubusercontent.com/wys35/wys35.github.io/master/img/" + tripname + "/" + row['filename'] + "' class='photo'><br/>\n"
     else:
-	#   imageHTML +="<img src='img/" + row['filename'] + "' class='photo'><br/>\n"
-        imageHTML +="<img src='https://raw.githubusercontent.com/wys35/wys35.github.io/master/img/"+ row['filename'] + "' class='photo'><br/>\n"
+	    #imageHTML +="<img src='img/" + tripname + "/" + row['filename'] + "' class='photo'><br/>\n"
+        imageHTML +="<img src='https://raw.githubusercontent.com/wys35/wys35.github.io/master/img/" + tripname + "/"+ row['filename'] + "' class='photo'><br/>\n"
     
 
 # read in template, swap in the constructed values
@@ -45,5 +49,5 @@ data = data.replace('// markers, locations', markerstr)
 data = data.replace('// iconFeatures, Tooltips', iconFeaturestr)
 data = data.replace('<!-- images -->', imageHTML)
 
-with open("index.html", "w", encoding='utf-8') as f:
+with open(tripname + ".html", "w", encoding='utf-8') as f:
     f.write(data)

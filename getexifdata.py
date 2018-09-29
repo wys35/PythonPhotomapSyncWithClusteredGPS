@@ -1,6 +1,7 @@
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
 import os
+import sys
 
 def _get_if_exist(data, key):
     if key in data:
@@ -67,7 +68,7 @@ def get_lat_lon(exif_data):
  
     return lat, lon    
 
-pics = sorted(os.listdir("img"))
+pics = sorted(os.listdir("img/" + sys.argv[1]))
 pics = (p for p in pics if p.endswith(".JPG") or p.endswith(".jpg") or p.endswith(".JPEG") or p.endswith(".jpeg"))
 
 csv = open("data.csv", "w") 
@@ -78,7 +79,7 @@ curlon = 0
 
 for pic in pics:
     try:
-        gpsvalue = get_lat_lon(get_exif_data("img/" + pic))
+        gpsvalue = get_lat_lon(get_exif_data("img/" + sys.argv[1] + "/" + pic))
         lat = gpsvalue[0]
         lon = gpsvalue[1]
         if lat is None and lon is None:
