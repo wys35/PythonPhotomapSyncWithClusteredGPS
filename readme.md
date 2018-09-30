@@ -7,4 +7,13 @@
 6. Tweak (name_of_the_trip).html, zoom factor appropriately.
 7. Copy all files except *.csv, *.py for upload.
 
+References
 
+GPS data extraction 
+	http://geospatialtraining.com/extracting-geographic-coordinates-from-photos-using-python/
+
+Scikit-learn
+	DBSCAN https://geoffboeing.com/2014/08/clustering-to-reduce-spatial-data-set-size/
+
+JQuery scroll into view animaiton
+	https://erraticdev.blogspot.com/2011/02/jquery-scroll-into-view-plugin-with.html
