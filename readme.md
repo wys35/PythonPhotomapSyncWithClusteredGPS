@@ -1,4 +1,4 @@
-1. Install numpy, scikit-learn (pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose scikit-learn)
+1. Install numpy, scikit-learn, pillow (pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose scikit-learn pillow)
 2. Install ImageMagick (Include legacy tools - "convert")
 2. Copy photos to a subfolder (name_of_the_trip) of img directory 
 3. GenerateHTML.py need to be modified for image source path depending on whether files are self hosted or on Github pages (absolute path required)
