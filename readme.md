@@ -1,10 +1,13 @@
+Installation
 1. Install numpy, scikit-learn, pillow (pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose scikit-learn pillow)
 2. Install ImageMagick (Include legacy tools - "convert")
-3. Copy photos to a subfolder (name_of_the_trip) of img directory 
-4. Tweak dbscanit.py for cluster distance, execute runme.ps1, until satisfied with results in (name_of_the_trip).html
-5. Execute resizeimage.ps1 to resize images to 800x800.
-6. Tweak (name_of_the_trip).html, zoom factor appropriately.
-7. Copy all files except *.csv, *.py for upload.
+
+Generation
+1. Copy photos to a subfolder (name_of_the_trip) of img directory 
+2. Tweak dbscanit.py for cluster distance, execute runme.ps1 -TripName name_of_the_trip, until satisfied with results in (name_of_the_trip).html
+3. Execute resizeimage.ps1 -TripName name_of_the_trip to resize images to 800x800.
+4. Tweak (name_of_the_trip).html, "zoom" factor appropriately.
+5. Copy name_of_the_trip.html and img/name_of_the_trip/*.* for upload.
 
 References
 
