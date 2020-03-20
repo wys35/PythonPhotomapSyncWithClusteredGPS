@@ -17,5 +17,5 @@ GPS data extraction
 Scikit-learn
 	DBSCAN https://geoffboeing.com/2014/08/clustering-to-reduce-spatial-data-set-size/
 
-JQuery scroll into view animaiton
+JQuery scroll into view animation
 	https://erraticdev.blogspot.com/2011/02/jquery-scroll-into-view-plugin-with.html
