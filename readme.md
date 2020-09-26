@@ -1,5 +1,5 @@
 Installation
-1. Install numpy, scikit-learn, pillow (pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose scikit-learn pillow)
+1. Install numpy, scikit-learn, exifread, piexif, gpsphoto (pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose scikit-learn exifread piexif gpsphoto)
 2. Install ImageMagick (Include legacy tools - "convert")
 
 Generation
